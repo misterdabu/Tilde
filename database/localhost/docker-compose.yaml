@@ -18,7 +18,7 @@ services:
     ports:
       - 8081:8080
 
-  mongo:
+  mongodb:
     image: mongo:latest
     container_name: tilde-mongodb
     restart: always
@@ -27,7 +27,9 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: password
       MONGO_INITDB_DATABASE: root-db
     volumes:
-      - ./gitignore/mongodb:/var/lib/mongodb/data
-      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - data:/data/db
     ports:
       - 27017:27017
+    
+volumes: 
+  data:
